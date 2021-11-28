@@ -1,0 +1,823 @@
+{
+  "version": "0.0.0",
+  "name": "solana_anchor",
+  "instructions": [
+    {
+      "name": "initPool",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "saleMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "setAuthority",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "newOwner",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "setWhitelist",
+      "accounts": [
+        {
+          "name": "client",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "bidder",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "whitelisted",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "updateWhitelist",
+      "accounts": [
+        {
+          "name": "client",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "whitelisted",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "controlPresaleLive",
+      "accounts": [
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "lived",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "mintNft",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "client",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "metadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "masterEdition",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "metadataExtended",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMetadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        },
+        {
+          "name": "data",
+          "type": {
+            "defined": "Metadata"
+          }
+        }
+      ]
+    },
+    {
+      "name": "setMaxPrice",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "metadataExtended",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "maxPrice",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "initSaleManager",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "nftMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "saleManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "sellNft",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "nftMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "metadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "metadataExtended",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "saleManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "salePot",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "nftSellerToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nftManagerToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "managerPot",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMetadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "price",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "buyNft",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "nftMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "metadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "saleManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "salePot",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nftManagerToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nftBidderToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "managerPot",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bidderToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMetadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "redeemNft",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "nftMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "metadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "saleManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nftSellerToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nftManagerToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMetadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "withdrawFund",
+      "accounts": [
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "saleManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "salePot",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolPot",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "withdrawPot",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Pool",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "presaleLive",
+            "type": "bool"
+          },
+          {
+            "name": "saleMint",
+            "type": "publicKey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Client",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "pool",
+            "type": "publicKey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "whitelisted",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MetadataExtended",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "pool",
+            "type": "publicKey"
+          },
+          {
+            "name": "maxPrice",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SaleManager",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "pool",
+            "type": "publicKey"
+          },
+          {
+            "name": "seller",
+            "type": "publicKey"
+          },
+          {
+            "name": "nftMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "nftPot",
+            "type": "publicKey"
+          },
+          {
+            "name": "salePot",
+            "type": "publicKey"
+          },
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "saleState",
+            "type": "u8"
+          },
+          {
+            "name": "isPrimary",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SalePot",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "isUsed",
+            "type": "bool"
+          },
+          {
+            "name": "saleManager",
+            "type": "publicKey"
+          },
+          {
+            "name": "poolPot",
+            "type": "publicKey"
+          },
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "isPrimary",
+            "type": "bool"
+          },
+          {
+            "name": "seller",
+            "type": "publicKey"
+          },
+          {
+            "name": "sellerVerified",
+            "type": "bool"
+          },
+          {
+            "name": "sellerFeeBasisPoints",
+            "type": "u16"
+          },
+          {
+            "name": "creators",
+            "type": {
+              "vec": {
+                "defined": "Creator"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "Creator",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "address",
+            "type": "publicKey"
+          },
+          {
+            "name": "verified",
+            "type": "bool"
+          },
+          {
+            "name": "share",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Metadata",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "name": "sellerFeeBasisPoints",
+            "type": "u16"
+          },
+          {
+            "name": "creators",
+            "type": {
+              "vec": {
+                "defined": "Creator"
+              }
+            }
+          },
+          {
+            "name": "isMutable",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 300,
+      "name": "TokenMintToFailed",
+      "msg": "Token mint to failed"
+    },
+    {
+      "code": 301,
+      "name": "TokenSetAuthorityFailed",
+      "msg": "Token set authority failed"
+    },
+    {
+      "code": 302,
+      "name": "TokenTransferFailed",
+      "msg": "Token transfer failed"
+    },
+    {
+      "code": 303,
+      "name": "PresaleLive",
+      "msg": "Presale is live"
+    },
+    {
+      "code": 304,
+      "name": "PresaleNotLive",
+      "msg": "Presale is not live"
+    },
+    {
+      "code": 305,
+      "name": "InvalidMintAccount",
+      "msg": "Invalid mint account"
+    },
+    {
+      "code": 306,
+      "name": "InvalidTokenAccount",
+      "msg": "Invalid token account"
+    },
+    {
+      "code": 307,
+      "name": "InvalidPoolAccount",
+      "msg": "Invalid pool account"
+    },
+    {
+      "code": 308,
+      "name": "NotWhitelisted",
+      "msg": "Not whitelisted"
+    },
+    {
+      "code": 309,
+      "name": "MintAmountIsZero",
+      "msg": "Mint amount is zero"
+    },
+    {
+      "code": 310,
+      "name": "AlreadyTrading",
+      "msg": "Already on sale"
+    },
+    {
+      "code": 311,
+      "name": "InvalidPrice",
+      "msg": "Invalid price"
+    },
+    {
+      "code": 312,
+      "name": "InvalidSaleState",
+      "msg": "Invalid sale state"
+    },
+    {
+      "code": 313,
+      "name": "NotEnoughTokenAmount",
+      "msg": "Not enough token amount"
+    },
+    {
+      "code": 314,
+      "name": "InvalidBidder",
+      "msg": "Invalid bidder"
+    },
+    {
+      "code": 315,
+      "name": "InvalidAmount",
+      "msg": "Invalid amount"
+    }
+  ]
+}

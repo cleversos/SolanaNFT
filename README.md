@@ -1,30 +1,6 @@
-Contribution: 2021-09-30 20:00
+# solana-nft
+Solana Program for NFT, Presale, Royalty features
 
-Contribution: 2021-10-01 20:00
-
-Contribution: 2021-10-01 20:01
-
-Contribution: 2021-10-01 20:02
-
-Contribution: 2021-10-02 20:00
-
-Contribution: 2021-10-02 20:01
-
-Contribution: 2021-10-04 20:00
-
-Contribution: 2021-10-05 20:00
-
-Contribution: 2021-10-05 20:01
-
-Contribution: 2021-10-09 20:00
-
-Contribution: 2021-10-12 20:00
-
-Contribution: 2021-10-14 20:00
-
-Contribution: 2021-10-16 20:00
-
-Contribution: 2021-10-18 20:00
-
-Contribution: 2021-10-18 20:01
-
+- NFT from metaplex token-metadata
+- Presale
+- Royalty
